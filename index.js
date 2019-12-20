@@ -10,8 +10,8 @@
 // EXAMPLE SOLUTION CODE:
 class Airplane {
   constructor(name) {
-    this.name = name;
-    this.isFlying = false;
+    this.name = name,
+    this.isFlying = false
   }
   takeOff() {
     this.isFlying = true;
@@ -42,9 +42,9 @@ class Airplane {
 
 class Person {
   constructor(name, age){
-    this.name = name;
-    this.stomach = [];
-    this.age = age;
+    this.name = name,
+    this.stomach = [],
+    this.age = age
   }
   eat(someFood){
     if (this.stomach.length < 10){
@@ -75,10 +75,10 @@ class Person {
 
 class Car {
   constructor(model, milesPerGallon){
-    this.model = model;
-    this.milesPerGallon = milesPerGallon;
-    this.tank = 0;
-    this.odometer = 0;
+    this.model = model,
+    this.milesPerGallon = milesPerGallon,
+    this.tank = 0,
+    this.odometer = 0
   }
   fill(gallons){
     this.tank = this.tank + gallons
@@ -109,9 +109,9 @@ class Car {
 */
 class Lambdasian {
   constructor(object){
-    this.name = object.name;
-    this.age = object.age;
-    this.location = object.location;
+    this.name = object.name,
+    this.age = object.age,
+    this.location = object.location
   }
   speak(){
     return `Hello, my name is ${this.name}. I am from ${this.location}`;
@@ -143,18 +143,43 @@ class Me extends Lambdasian{
 class Instructor extends Lambdasian {
   constructor(object){
     super(object);
-    this.specialty = object.specialty;
-    this.favLanguage = object.favLanguage;
-    this.catchPhrase = object.catchPhrase;
+    this.specialty = object.specialty,
+    this.favLanguage = object.favLanguage,
+    this.catchPhrase = object.catchPhrase
   }
   demo(subject){
     return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    return `${student.name} reveices perfect score on ${subject}`;
+    return `${student.name} receiveses perfect score on ${subject}`;
+  }
+  grading(student){
+    let grade = Math.round(Math.random()*100);
+    student.grade -= grade;
+    console.log(grade)
+    return grade;
   }
 }
+const instructor = new Instructor({
+  name: 'name',
+  age: 18,
+  location: 'california',
+  specialty: 'computer',
+  favLanguage: 'python',
+  catchPhrase: 'hello'
+})
 
+const lambdasian = new Lambdasian({
+  name: 'Thomas',
+  age: 27,
+  location: 'cali'
+});
+
+console.log(instructor);
+console.log(instructor.demo('bioligy'));
+console.log(instructor.grade(lambdasian, 'computer science'));
+console.log(instructor.grading(lambdasian));
+console.log(Math.round(Math.random()*100));
 /*
   TASK 5
     - Write a Student class extending Lambdasian.
@@ -173,14 +198,33 @@ class Instructor extends Lambdasian {
 class Student extends Lambdasian {
   constructor(object){
     super(object);
-    this.previousBackground = object.previousBackground;
-    this.className = object.className;
-    this.favSubjects = object.favSubjects;
+    this.previousBackground = object.previousBackground,
+    this.className = object.className,
+    this.favSubjects = object.favSubjects,
+    this.grade = object.grade
   }
   listSubjects(){return `Loving ${this.favSubjects}`;}
   PRAssignment(subject){return `${this.name} has submitted a PR for ${subject}`};
   sprintChallenge(subject){return `${this.name} has begun sprint challenge on ${subject}`};
+  graduate(){
+    if (this.grade >= 100){
+      return `Congratulations, ${this.name}, you have graduated`;
+    } else {
+      return `You need to increase your grades!`;
+    }
+    // return this.graduate()
+  }
 }
+
+const newStudent = new Student({
+  name: 'name1111',
+  age: 18,
+  location: 'california',
+  specialty: 'computer',
+  favLanguage: 'python',
+  catchPhrase: 'hello'
+})
+console.log(newStudent.graduate())
 
 /*
   TASK 6
@@ -198,14 +242,14 @@ class Student extends Lambdasian {
 class ProjectManager extends Instructor {
   constructor(object){
     super(object);
-    this.gradClassName = object.gradClassName;
-    this.favInstructor = object.favInstructor;
+    this.gradClassName = object.gradClassName,
+    this.favInstructor = object.favInstructor
   }
   standUp(channel){
     return `${this.name} announces to ${channel}, @channel standy times!`;
   }
-  debugsCode(Student, subject){
-    return `${this.name} debugs ${Student.name}'s code on ${subject}`;
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
 }
 const fernando = new Student({
